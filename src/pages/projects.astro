@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 const res = await fetch('https://api.github.com/users/tarfish/repos');
 const repos = await res.json();
+const latestRepos = repos
+	.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+	.slice(0, 5);
+export const prerender = false
 ---
 
 <header>my projects!</header>
@@ -16,8 +20,8 @@ const repos = await res.json();
 	</div>
 	<br>
 	<div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
-		<p>you can click on these links to be redirected to the github repo :o</p>
-		{repos.map((repo) => (
+		<p>5 latest repos pulled straight from github!</p>
+		{latestRepos.map((repo) => (
 			<div class="mb-6">
 				<h2 class="text-2xl"><a href={repo.html_url} target="_blank">{repo.name}</a></h2>
 				<p class="mt-2">{repo.description}</p>
