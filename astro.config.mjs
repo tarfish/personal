@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tarfish.github.io',
@@ -13,5 +15,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: netlify()
+  adapter: node({
+    mode: 'standalone'
+  })
 });
