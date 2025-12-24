@@ -1,10 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import node from '@astrojs/node';
 
-import vercel from '@astrojs/vercel';
-
-import cloudflare from '@astrojs/cloudflare';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   output: 'server',
