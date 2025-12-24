@@ -9,7 +9,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   site: 'https://tarfish.github.io',
   output: 'server',
-  adapter: cloudflare(),
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss()]
   }
