@@ -19,29 +19,34 @@ const commitDate = date.toLocaleDateString("en-US", {
   day: "numeric",
 });
 ---
+
 <Layout title="contact">
-  <header><b>contact me!</b></header>
+  <div class="flex flex-col min-h-screen">
+    <header><b>contact me!</b></header>
 
-  <main class="flex-grow">
-    <br>
-    <Moving />
-
-    <div class="mt-12 mx-5 gap-8">
-      <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
-        <Redirects />
-      </div>
-
+    <main class="flex-grow">
       <br>
+      <Moving />
 
-      <div class="p-12 py-4 card-3d bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
-        <Contacts />
+      <div class="mt-12 mx-5 gap-8">
+        <div class="p-12 py-4 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center items-center flex flex-col text-xl text-white">
+          <Redirects />
+        </div>
+
+        <br>
+
+        <div class="p-12 py-4 card-3d bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
+          <Contacts />
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <footer class="text-center">
-    <span class="lowercase">by sarvesh, Last updated: {commitDate} (commit {commitHash})</span>
-  </footer>
+    <footer class="text-center">
+      <span class="lowercase">
+        by sarvesh, Last updated: {commitDate} (commit {commitHash})
+      </span>
+    </footer>
+  </div>
 
   <script type="module" client:load>
     document.querySelectorAll(".card-3d").forEach(card => {
@@ -68,7 +73,10 @@ const commitDate = date.toLocaleDateString("en-US", {
         ty = ((e.clientX - r.left) / r.width - 0.5) * max;
       });
 
-      card.addEventListener("mouseleave", () => { tx = 0; ty = 0; });
+      card.addEventListener("mouseleave", () => {
+        tx = 0;
+        ty = 0;
+      });
     });
   </script>
 </Layout>
