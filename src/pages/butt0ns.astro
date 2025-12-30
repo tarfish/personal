@@ -10,14 +10,26 @@
 
 <script>
   function copyButton() {
-    const html = '<img src="https://www.sarvesh.rocks/assets/sarvesh-button.gif" alt="sarvesh\'s button" width="88" height="31" />';
-    navigator.clipboard.writeText(html).then(() => {
-      alert('Button HTML copied to clipboard!');
-    }).catch(() => {
-      alert('Failed to copy');
-    });
+    const html = `<a href="https://www.sarvesh.rocks/">
+<img src="https://www.sarvesh.rocks/assets/sarvesh-button.gif"
+     alt="sarvesh's button"
+     width="88"
+     height="31" />
+</a>`;
+
+    const textarea = document.createElement("textarea");
+    textarea.value = html;
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+
+    document.execCommand("copy"); // ← this was missing
+
+    document.body.removeChild(textarea);
+    alert("Button HTML copied!");
   }
 </script>
+
 <br>
   <h1 class="text-3xl text-white">other hackclubbers</h1>
 <div class="buttons">

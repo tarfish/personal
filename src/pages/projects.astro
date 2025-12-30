@@ -10,21 +10,6 @@ const repos: any[] = await res.json();
 const latestRepos = repos
   .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
   .slice(0, 5);
-
-const commitHash = import.meta.env.VERCEL_GIT_COMMIT_SHA
-  ? import.meta.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)
-  : "dev";
-
-const commitDateRaw = import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP
-  ? new Date(import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP).toISOString().split("T")[0]
-  : new Date().toISOString().split("T")[0];
-
-const date = new Date(commitDateRaw);
-const commitDate = date.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
 ---
 <Layout title="projects">
   <div class="flex flex-col min-h-screen">
@@ -48,15 +33,10 @@ const commitDate = date.toLocaleDateString("en-US", {
               <p class="mt-2">{repo.description}</p>
             </div>
           ))}
+          <span class="text-base text-center">by sarvesh</span>
         </div>
       </div>
     </main>
-
-    <footer class="text-center">
-      <span class="lowercase">
-        by sarvesh, Last updated: {commitDate} (commit {commitHash})
-      </span>
-    </footer>
   </div>
 
   <script type="module" client:load>

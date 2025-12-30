@@ -3,21 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Redirects from "../pages/Redirects.astro";
 import Contacts from "../pages/contacts.astro";
 import Moving from "./Moving.astro";
-
-const commitHash = import.meta.env.VERCEL_GIT_COMMIT_SHA
-  ? import.meta.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7)
-  : "dev";
-
-const commitDateRaw = import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP
-  ? new Date(import.meta.env.VERCEL_GIT_COMMIT_TIMESTAMP).toISOString().split("T")[0]
-  : new Date().toISOString().split("T")[0];
-
-const date = new Date(commitDateRaw);
-const commitDate = date.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
 ---
 
 <Layout title="contact">
@@ -37,15 +22,10 @@ const commitDate = date.toLocaleDateString("en-US", {
 
         <div class="p-12 py-4 card-3d bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 border-4 border-blue-900 justify-center flex flex-col text-lg text-white">
           <Contacts />
+            <span class="text-base text-center">by sarvesh</span>
         </div>
       </div>
     </main>
-
-    <footer class="text-center">
-      <span class="lowercase">
-        by sarvesh, Last updated: {commitDate} (commit {commitHash})
-      </span>
-    </footer>
   </div>
 
   <script type="module" client:load>
