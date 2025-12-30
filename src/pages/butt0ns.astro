@@ -1,32 +1,33 @@
 <h1 class="text-3xl text-white">my button! (click to copy)</h1>
+
 <img
   src="https://www.sarvesh.rocks/assets/sarvesh-button.gif"
   alt="sarvesh's button"
   width="88"
   height="31"
+  style="cursor:pointer"
   onclick="copyButton()"
-  style="cursor: pointer;"
 />
 
-<script>
+<input
+  id="copy-input"
+  readonly
+  style="position:absolute;left:-9999px"
+/>
+
+<script is:inline>
   function copyButton() {
-    const html = `<a href="https://www.sarvesh.rocks/">
+    const html =
+`<a href="https://www.sarvesh.rocks/">
 <img src="https://www.sarvesh.rocks/assets/sarvesh-button.gif"
      alt="sarvesh's button"
      width="88"
      height="31" />
 </a>`;
 
-    const textarea = document.createElement("textarea");
-    textarea.value = html;
-    document.body.appendChild(textarea);
-    textarea.select();
-    textarea.setSelectionRange(0, 99999);
-
-    document.execCommand("copy"); // ← this was missing
-
-    document.body.removeChild(textarea);
-    alert("Button HTML copied!");
+    navigator.clipboard.writeText(html)
+      .then(() => alert("Copied ✔"))
+      .catch(() => alert("Copy failed"));
   }
 </script>
 
