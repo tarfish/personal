@@ -27,3 +27,9 @@ pnpm-debug.log*
 .netlify
 
 .vercel
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
